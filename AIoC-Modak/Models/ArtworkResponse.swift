@@ -7,9 +7,7 @@ protocol Mappable: Codable {
 struct ArtworkResponse: Mappable {
     static func endpoint(for page: Int) -> String {
         let fields = Artwork.CodingKeys.allCases.map { $0.rawValue }.joined(separator: ",")
-        let url = "https://api.artic.edu/api/v1/artworks?page=\(page)&fields=\(fields)"
-        print("fetching from: \(url)")
-        return url
+        return "https://api.artic.edu/api/v1/artworks?page=\(page)&fields=\(fields)"
     }
     
     let pagination: Pagination

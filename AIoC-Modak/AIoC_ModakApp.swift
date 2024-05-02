@@ -1,35 +1,18 @@
-//
-//  AIoC_ModakApp.swift
-//  AIoC-Modak
-//
-//  Created by Alejandro Ravasio on 01/05/2024.
-//
-
 import SwiftUI
-import SwiftData
+import CoreData
 
 @main
 struct AIoC_ModakApp: App {
-//    var sharedModelContainer: ModelContainer = {
-//        let schema = Schema([
-//            Item.self,
-//        ])
-//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//
-//        do {
-//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-//        } catch {
-//            fatalError("Could not create ModelContainer: \(error)")
-//        }
-//    }()
-
+    let persistenceController = CoreDataController.shared
+    
     var body: some Scene {
         WindowGroup {
-            let client = NetworkClient()
-            let vm = MainViewModel(initialState: .loading, networkClient: client)
-            MainView(model: vm)
-//            ContentView()
+            let viewModel = MainViewModel(
+                initialState: .loading,
+                networkClient: NetworkClient(),
+                context: persistenceController.persistentContainer.viewContext
+            )
+            MainView(model: viewModel)
         }
-//        .modelContainer(sharedModelContainer)
     }
 }

@@ -18,7 +18,7 @@ struct Artwork: Codable, Identifiable {
     var iiifImageUrl: URL? {
         guard let imageId else { return nil }
         let baseUrl = "https://www.artic.edu/iiif/2"
-        let size = "843,"  // Recommended size, adjust as needed
+        let size = "843,"
         let path = "\(imageId)/full/\(size)/0/default.jpg"
         return URL(string: "\(baseUrl)/\(path)")
     }
