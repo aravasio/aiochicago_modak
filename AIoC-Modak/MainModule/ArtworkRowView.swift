@@ -1,4 +1,5 @@
 import SwiftUI
+import CachedAsyncImage
 
 struct ArtworkRowView: View {
     var artwork: Artwork
@@ -18,7 +19,7 @@ struct ArtworkRowView: View {
     @ViewBuilder
     private func artworkThumbnail(_ artwork: Artwork) -> some View {
         if let url = artwork.iiifImageUrl {
-            AsyncImage(url: url) { phase in
+            CachedAsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()

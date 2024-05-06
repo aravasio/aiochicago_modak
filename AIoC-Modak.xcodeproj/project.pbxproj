@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		574DACE22BE92F8700D529AF /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 574DACE12BE92F8700D529AF /* CachedAsyncImage */; };
 		57948E5E2BE367BB0057DC23 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57948E5D2BE367BB0057DC23 /* DetailView.swift */; };
 		57948E602BE36E1E0057DC23 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57948E5F2BE36E1E0057DC23 /* CoreDataController.swift */; };
 		57948E632BE36E580057DC23 /* FavoriteArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57948E622BE36E580057DC23 /* FavoriteArtwork.swift */; };
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574DACE22BE92F8700D529AF /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,9 @@
 			dependencies = (
 			);
 			name = "AIoC-Modak";
+			packageProductDependencies = (
+				574DACE12BE92F8700D529AF /* CachedAsyncImage */,
+			);
 			productName = "AIoC-Modak";
 			productReference = 57ACA4E52BE28F9900DE478E /* AIoC-Modak.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +164,9 @@
 				Base,
 			);
 			mainGroup = 57ACA4DC2BE28F9800DE478E;
+			packageReferences = (
+				574DACE02BE92F8700D529AF /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = 57ACA4E62BE28F9900DE478E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -400,6 +408,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		574DACE02BE92F8700D529AF /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		574DACE12BE92F8700D529AF /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 574DACE02BE92F8700D529AF /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57ACA4DD2BE28F9800DE478E /* Project object */;
 }
