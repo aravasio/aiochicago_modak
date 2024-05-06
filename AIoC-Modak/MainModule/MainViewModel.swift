@@ -18,7 +18,7 @@ class MainViewModel: MainViewModelProtocol {
     
     var isLoading = false
     var viewContext: NSManagedObjectContext
-
+    
     private let networkClient: NetworkClientProtocol
     private var artworks: [Artwork] = []
     private var currentPage = 0
@@ -37,32 +37,33 @@ class MainViewModel: MainViewModelProtocol {
         await fetchData(for: currentPage + 1)
     }
     
-    func fetchData(for page: Int = 0) async {
+    func fetchInitialData() async {
+        if artworks.isEmpty {
+            await fetchData()
+        }
+    }
+    
+    func toggleFavorites() {
+        if showFavoritesOnly {
+            state = .loaded(data: artworks.filter { isArtworkFavorite(id: $0.id) })
+        } else {
+            state = .loaded(data: artworks)
+        }
+    }
+    
+    private func fetchData(for page: Int = 0) async {
         isLoading = true
         do {
             let response = try await networkClient.fetchResource(page: page, expecting: ArtworkResponse.self)
             totalPages = response.pagination.totalPages
             currentPage = response.pagination.currentPage
             let newArtworks = response.data
-            if showFavoritesOnly {
-                artworks = (artworks + newArtworks).filter { isArtworkFavorite(id: $0.id) }
-            } else {
-                artworks = artworks + newArtworks
-            }
+            artworks = artworks + newArtworks
             state = .loaded(data: artworks)
             isLoading = false
         } catch {
             state = .error(error)
             isLoading = false
-        }
-    }
-    
-    func toggleFavorites() {
-        showFavoritesOnly.toggle()
-        if showFavoritesOnly {
-            state = .loaded(data: artworks.filter { isArtworkFavorite(id: $0.id) })
-        } else {
-            state = .loaded(data: artworks)
         }
     }
     

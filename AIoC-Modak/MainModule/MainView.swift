@@ -28,7 +28,7 @@ struct MainView: View {
         }
         .onAppear {
             Task {
-                await model.fetchData()
+                await model.fetchInitialData()
             }
         }
     }
